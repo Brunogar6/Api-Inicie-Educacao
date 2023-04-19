@@ -27,8 +27,8 @@
 
 - Create a Post: Post localhost/posts
 
-- Create a Comment: Post localhost/comment
+- Create a Comment: Post localhost/comments
 
-- Delete a Comment: Delete localhost/commment/{id} 
+- Delete a Comment: Delete localhost/commments/{id} 
 
 

@@ -3,25 +3,44 @@
 namespace App\Http\Controllers;
 
 use App\Facades\ApiFacade;
-use App\Http\Requests\UserPostRequest;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    //List Users
     public function index()
     {
-       return ApiFacade::get('/users');
+       return ApiFacade::get('/users')->json();
     }
 
-    public function store(UserPostRequest $request)
+    //Create a User
+    public function store(Request $request)
     {
 
-        ApiFacade::post('/users', [
+        $user = ApiFacade::post('/users', [
             'email' => $request->email,
             'name' => $request->name,
             'gender' => $request->gender,
             'status' => $request->status,
         ]);
 
-        return ApiFacade::get('/users');
+        return $user->json();
+    }
+
+    //List a user
+    public function show(int $user)
+    {
+        return ApiFacade::get('/users', [
+            'id' => $user
+        ])->json();
+    }
+
+    //Delete a User
+
+    public function destroy(int $user)
+    {
+        $delete = ApiFacade::delete('/users/' . $user);
+
+        return $delete->json();
     }
 }
